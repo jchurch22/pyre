@@ -1,17 +1,6 @@
-// Libraries / Classes
 #include <fstream>
-#include <functional>
 #include <iostream>
-#include <string>
 #include "LinkedList.h"
-
-// Function prototypes
-void menu(LinkedList<Character> characterList, std::string file);
-int inputValidation();
-void clearScreen();
-void loadCharacters(const std::string& file, LinkedList<Character>& characterList);
-void addCharacter(LinkedList<Character>& characterList);
-void updateFile(const std::string& file, LinkedList<Character>& characterList, bool overwrite);
 
 // Character struct
 struct Character {
@@ -22,6 +11,14 @@ struct Character {
 	std::string description;
 
 };
+
+// Function prototypes
+void menu(LinkedList<Character>& characterList, std::string file);
+int inputValidation();
+void clearScreen();
+void loadCharacters(const std::string& file, LinkedList<Character>& characterList);
+void addCharacter(LinkedList<Character>& characterList);
+void updateFile(const std::string& file, LinkedList<Character>& characterList, bool overwrite);
 
 int main() {
 
@@ -35,7 +32,6 @@ int main() {
 
 }
 
-// Function to display the menu and handle user choices
 void menu(LinkedList<Character>& characterList, std::string file) {
 
 	int choice;
@@ -47,7 +43,7 @@ void menu(LinkedList<Character>& characterList, std::string file) {
 		      << "2. Add Character" << std::endl
 		      << "3. Remove Character" << std::endl
 		      << "4. About" << std::endl
-		      << "5. Exit" << std::endl << std::endl;
+	 	      << "5. Exit" << std::endl << std::endl;
 
 }
 
@@ -69,7 +65,7 @@ int inputValidation() {
 			std::cout << "\nPlease enter a positive number to proceed!\n";
 			std::cin.clear();	// Clears the fail state.
 			std::cin.ignore();	// Clears cin so new input can be received.
-		
+
 		}
 		else {
 
@@ -135,7 +131,7 @@ void loadCharacters(const std::string& file, LinkedList<Character>& characterLis
 
 // This function will add a character to the file.
 void addCharacter(LinkedList<Character>& characterList) {
-	
+
 	Character newCharacter;
 
 	// Prompt the user for each character attribute.
@@ -185,24 +181,24 @@ void updateFile(const std::string& file, LinkedList<Character>& characterList, b
 
 	// Rewrite file with new addition / removal
 	if (overwrite) {
-		
+
 		characterList.traverse([&characterFile](const Character& character) {
 
 			characterFile << character.name << " "
-					      << character.species << " "
-					      << character.age << " "
-					      << character.description << std::endl;
+				<< character.species << " "
+				<< character.age << " "
+				<< character.description << std::endl;
 
-		});
+			});
 
 	}
 	else {
 
 		const Character& character = characterList.back();
 		characterFile << character.name << " "
-					  << character.species << " "
-					  << character.age << " "
-					  << character.description << std::endl;
+			<< character.species << " "
+			<< character.age << " "
+			<< character.description << std::endl;
 
 	}
 

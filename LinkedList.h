@@ -3,6 +3,7 @@
 #define LINKEDLIST_H
 
 // Libraries / Classes
+#include <functional>
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -406,8 +407,8 @@ public:
     bool deleteCharacter(const std::string& name) {
 
         // Establish traversal nodes.
-        Node<T> current = head;
-        Node<T> previous = nullptr;
+        Node* current = head;
+        Node* previous = nullptr;
 
         while (current) {
 
